@@ -12,10 +12,10 @@
 [Example of Good/Bad Changelist descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
 ## Week 5 (26 Jul - 1 Aug)
->
+> Wrote Proposal for project at proposal.md
 
 ## Week 6 (2 Aug - 8 Aug)
->
+> tried to implement multiple excel reading repositories, which didn't work
 
 ## Week 7 (9 Aug - 15 Aug)
 >
