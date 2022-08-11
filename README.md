@@ -1,6 +1,6 @@
 # 2022-Y3CEP
 
-## Requires Anaconda
+## Requires [Anaconda](https://docs.continuum.io/anaconda/install)
 
 > Quick guide to markdown syntax: https://www.markdownguide.org/basic-syntax/
 
