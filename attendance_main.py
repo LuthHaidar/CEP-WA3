@@ -6,5 +6,3 @@ class New_Entry:
         self.timeout = timeout
         self.weaponid = weaponid
         self.pelletcount = pelletcount
-
-class 
