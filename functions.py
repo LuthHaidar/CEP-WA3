@@ -21,3 +21,6 @@ def reset(): #Resets the variables
     weaponid = ""
     pelletcount = ""
     return name, date, timein, timeout, weaponid, pelletcount
+
+def dataframe(): #Creates a dataframe with the variables
+    df = pd.DataFrame({"Name": [name], "Date": [date], "Time In": [timein], "Time Out": [timeout], "Weapon ID": [weaponid], "Pellet Count": [pelletcount]})
