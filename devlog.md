@@ -18,13 +18,17 @@
 > tried to implement multiple excel reading repositories, which didn't work
 
 ## Week 7 (9 Aug - 15 Aug)
->
+> sick
 
 ## Week 8 (16 Aug - 22 Aug)
->
+> revamped approach to the application
+> implemented use of Pandas
 
 ## Week 9 (23 Aug - 29 Aug)
->
+> Basic GUI has been completed
+> Users are now able to create a session with multiple entries
+> Users can now search through the entire database
+> Users can also read and check through the current session's entries.
 
 ## Week 10 (30 Aug - 5 Sep)
 >
