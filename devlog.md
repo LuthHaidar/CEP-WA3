@@ -21,14 +21,25 @@
 > sick
 
 ## Week 8 (16 Aug - 22 Aug)
-> revamped approach to the application
-> implemented use of Pandas
+> revamped approach to the application and implemented use of Pandas
 
 ## Week 9 (23 Aug - 29 Aug)
-> Basic GUI has been completed
-> Users are now able to create a session with multiple entries
-> Users can now search through the entire database
-> Users can also read and check through the current session's entries.
+### New features
+Basic GUI has been completed
+Users are now able to create a session with multiple entries
+Users can now search through the entire database
+Users can also read and check through the current session's entries.
+
+### Upcoming features
+Sorting
+Checking of valid inputs for new entries
+Better-looking data frame outputs
+Ability to redo an input entry in case of typos
+Ability to delete entries when reviewing the current session's entries
+
+### Known Bugs
+If the Enter button is clicked between printing, input is registered immediately after, leading to looping.
+If you add another entry after replying no to "Do you want to add another entry?", the previous session is deleted even though the program is not yet exited.
 
 ## Week 10 (30 Aug - 5 Sep)
 >
