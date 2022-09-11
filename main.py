@@ -3,7 +3,6 @@ import openpyxl as xl
 import os
 import time
 import msvcrt
-import tabulate
 import smtplib
 from os.path import basename
 from email.mime.application import MIMEApplication
@@ -14,6 +13,7 @@ from settings import *
 
 pd.set_option("display.colheader_justify", "center")  # dataframe formatting
 attendance_sheet = os.path.join(os.path.dirname(__file__), "attendance.xlsx")
+attendance_sheet_sorted = os.path.join(os.path.dirname(__file__), "attendance_sorted.xlsx")
 
 
 class New_Entry:  # creates a new entry
@@ -44,6 +44,7 @@ class New_Entry:  # creates a new entry
             timein = input("Please enter the time you entered(e.g. 1600): ")
             try:  # checks if time is valid
                 time.strptime(timein, "%H%M")
+                timein = int(timein)
                 break
             except:
                 print("Please enter a valid time.")
@@ -52,9 +53,10 @@ class New_Entry:  # creates a new entry
                 continue
 
         while True: # Time Out
-            timeout = input("Please enter the time you left: ")
+            timeout = input("Please enter the time you left(e.g. 1800): ")
             try:  # checks if time is valid
                 time.strptime(timeout, "%H%M")
+                timeout = int(timeout)
                 break
             except:
                 print("Please enter a valid time.")
@@ -64,7 +66,7 @@ class New_Entry:  # creates a new entry
 
         while True: # Weapon ID
             weaponid = input("Please enter the weapon ID: ")
-            if weaponid == "":
+            if weaponid == "": # checks if weapon ID is empty
                 print("Please enter a valid weapon ID.")
                 input()
                 os.system("cls")
@@ -74,7 +76,7 @@ class New_Entry:  # creates a new entry
 
         while True: # Pellet Count
             pelletcount = input("Please enter the pellet count: ")
-            try:
+            try: # ensures pellet count is an integer
                 pelletcount = int(pelletcount)
                 break
             except:
@@ -147,12 +149,15 @@ class All_entries:  # facilitates interaction with the main database
             value = value.lower()
         df = pd.read_excel(attendance_sheet)
         df = df[df[column] == value]
-        print(df)
+        if df.empty:
+            print("No entries found.")
+        else:
+            print(df)
 
     def sort_by(self, column):
         df = pd.read_excel(attendance_sheet)
         df = df.sort_values(column)
-        df.to_excel(r"E:/CEP-WA3/attendance_sorted.xlsx", index=False)
+        df.to_excel(attendance_sheet_sorted, index=False)
         print(df)
 
     def send_mail(self):  # sends attendance.xlsx to the email address given
@@ -195,11 +200,13 @@ def compile_entries():  # compiles entries into a list
             pass
         elif correct == "n":
             list1.pop()
+            os.system("cls")
             continue
+        
         choice = input("Do you want to add another entry? (y/n): ")
-
         if choice == "y":
-            pass
+            os.system("cls")
+            continue
         elif choice == "n":
             break
         else:
@@ -302,31 +309,44 @@ def main():  # main process
 
         elif choice == "3":  # search entries
             print(
-                'Column 1 is "Name", Column 2 is "Date", Column 3 is "Time In",\nColumn 4 is "Time Out", Column 5 is "Weapon ID"and Column 6 is "Pellet Count."'
+                'The following columns are available for searching: "Name", "Date", "Time In", "Time Out", "Weapon ID" or "Pellet Count".'
             )
             time.sleep(0.5)
             while msvcrt.kbhit():
                 flush = input()
             entry1 = All_entries()
-            column = input("Please enter the column name: ")
-            value = input("Enter your search term: ")
-            entry1.search(column, value)
+            while True:
+                column = input("Please enter the column name: ")
+                value = input("Enter your search term: ")
+                try:
+                    entry1.search(column, value)
+                    break
+                except:
+                    print("Please enter a valid column name.")
+                    continue
             input()
             os.system("cls")
 
         elif choice == "4":  # sort entries
             entry1 = All_entries()
             print(
-                'Column 1 is "Name", Column 2 is "Date", Column 3 is "Time In",\nColumn 4 is "Time Out", Column 5 is "Weapon ID"and Column 6 is "Pellet Count."'
+                'You can sort by: "Name", "Date", "Time In", "Time Out", "Weapon ID" or "Pellet Count".'
             )
             time.sleep(0.5)
             while msvcrt.kbhit():
                 flush = input()
-            column = input("Please enter the column name by which you want to sort: ")
-            entry1.sort_by(column)
-            print(
-                "You can also find the sorted entries in the file 'attendance_sorted.xlsx'."
-            )
+            while True:
+                column = input("Please enter the column name by which you want to sort: ")
+                try:    
+                    entry1.sort_by(column) # sorts by column and prints the sorted dataframe
+                    print(
+                    "You can also find the sorted entries in the file 'attendance_sorted.xlsx'."
+                    )
+                    break
+                except:
+                    print("Please enter a valid column name.")
+                    continue
+                
             input()
             os.system("cls")
 
