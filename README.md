@@ -1,6 +1,6 @@
 # 2022-Y3CEP
 
-## Requires [Anaconda](https://docs.continuum.io/anaconda/install)
+## Requires [Pandas](https://pandas.pydata.org/docs/getting_started/install.html) and [OpenPyXl](https://openpyxl.readthedocs.io/en/stable/)
 
 > Quick guide to markdown syntax: https://www.markdownguide.org/basic-syntax/
 
